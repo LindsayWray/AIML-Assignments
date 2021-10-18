@@ -1,5 +1,6 @@
 import streamlit as st
 import base64
+import time
 from package import animals
 from package import superpowers
 
@@ -16,7 +17,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-st.title("Which Super Powered Animal Are You?")
+st.header("Which Super Powered Animal Are You?")
 st.write("Did you always wonder which superpowered animal is harbouring in you?")
 st.write("Take this quiz and find out!")
 query_1 = st.radio("Pick your favourite element:",["⛰ Earth" ,"🌊 Water" ,"🔥 Fire", "🌪 Air"])
@@ -26,4 +27,8 @@ query_4 = st.radio("Do you prefer books or movies?", ["📚 Books", "🎬 Movies
 if st.button("Confirm"):
 	animal = animals.which_animal(query_1, query_2)
 	superpower = superpowers.which_superpower(query_3, query_4)
+	my_bar = st.progress(0)
+	for percent_complete in range(100):
+		time.sleep(0.01)
+		my_bar.progress(percent_complete + 1)
 	st.info(f"The results are in 🥁:\n\nYou are a{superpower} {animal}!\n")
