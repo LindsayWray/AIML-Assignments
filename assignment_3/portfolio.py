@@ -3,7 +3,7 @@ import base64
 from package import animals
 from package import superpowers
 
-main_bg = "images/background.jpeg"
+main_bg = "assignment_3/images/background.jpeg"
 main_bg_ext = "jpeg"
 st.markdown(
     f"""
