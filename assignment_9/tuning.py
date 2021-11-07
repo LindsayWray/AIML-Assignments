@@ -38,29 +38,29 @@ X_train,x_test,y_train,y_test = train_test_split(X,y,train_size=0.70,random_stat
 
 #def grid_tuning(X_train, y_train):
 model = SVC()
-param_space = {'C': [0.1, 1, 10, 100],
-               'gamma': [1, 0.1, 0.01],
-               'kernel': ['rbf', 'linear', 'sigmoid']}
+# param_space = {'C': [0.1, 1, 10, 100],
+#                'gamma': [1, 0.1, 0.01],
+#                'kernel': ['rbf', 'linear', 'sigmoid']}
 
-tuning_grid = GridSearchCV(model, param_space, scoring="recall", cv=5, n_jobs=-1, verbose=3)
-tuning_grid.fit(X_train, y_train)
-print("Results for GridSearchCV")
-print("Best parameters:", tuning_grid.best_params_)
-print("Best score:", tuning_grid.best_score_)
-print("Best estimator:", tuning_grid.best_estimator_)
+# tuning_grid = GridSearchCV(model, param_space, scoring="recall", cv=5, n_jobs=-1, verbose=3)
+# tuning_grid.fit(X_train, y_train)
+# print("Results for GridSearchCV")
+# print("Best parameters:", tuning_grid.best_params_)
+# print("Best score:", tuning_grid.best_score_)
+# print("Best estimator:", tuning_grid.best_estimator_)
 
-tuning_random = RandomizedSearchCV(model, param_space, scoring="recall", cv=5, n_jobs=-1, verbose=3)
-tuning_random.fit(X_train, y_train)
-print("Results for RandomizedSearchCV")
-print("Best parameters:", tuning_random.best_params_)
-print("Best score:", tuning_random.best_score_)
-print("Best estimator:", tuning_random.best_estimator_)
+# tuning_random = RandomizedSearchCV(model, param_space, scoring="recall", cv=5, n_jobs=-1, verbose=3)
+# tuning_random.fit(X_train, y_train)
+# print("Results for RandomizedSearchCV")
+# print("Best parameters:", tuning_random.best_params_)
+# print("Best score:", tuning_random.best_score_)
+# print("Best estimator:", tuning_random.best_estimator_)
 
 tuning_bayes = BayesSearchCV(model,
-                             {'C': Real(0.1, 1, 10, 100, prior='log-uniform'),
-                              'gamma': Real(1, 0.1, 0.01, prior='log-uniform'),
+                             {'C': Real(0.1, 100, prior='log-uniform'),
+                              'gamma': Real(0.01, 1, prior='log-uniform'),
                               'kernel': Categorical(['rbf', 'linear', 'sigmoid'])
-                              }, n_iter=40,scoring="recall", cv=5,n_jobs=-1,verbose=3)
+                              }, n_iter=40,scoring="recall", cv=2,n_jobs=-1,verbose=3)
 tuning_bayes.fit(X_train,y_train)
 print("Results for BayesSearchCV")
 print("Best parameters:", tuning_bayes.best_params_)
