@@ -13,8 +13,9 @@ def grid_tuning(X_train, y_train):
 	param_space = {'C': [0.1, 1, 10, 100],
 				'gamma': [1, 0.1, 0.01],
 				'kernel': ['rbf', 'linear', 'sigmoid']}
-	tuning = GridSearchCV(model,param_space,scoring="accuracy", cv=5, n_jobs=-1, verbose=3)
+	tuning = GridSearchCV(model,param_space,scoring="recall", cv=5, n_jobs=-1, verbose=3)
 	tuning.fit(X_train,y_train)
-	print(tuning.best_params_)
-	print(tuning.best_score_)
-	print(tuning.best_estimator_)
+	print("Results for GridSearchCV")
+	print("Best parameters:", tuning_grid.best_params_)
+	print("Best score:", tuning_grid.best_score_)
+	print("Best estimator:", tuning_grid.best_estimator_)
