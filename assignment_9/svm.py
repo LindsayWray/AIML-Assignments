@@ -26,9 +26,13 @@ df = pd.get_dummies(df,columns=["Sex","ChestPainType", "ExerciseAngina"])
 print(df.info())
 
 y = df["HeartDisease"]
-x = df.drop("HeartDisease",axis=1)
+X = df.drop("HeartDisease",axis=1)
 
 from sklearn.model_selection import train_test_split
-x_train,x_test,y_train,y_test = train_test_split(x,y,train_size=0.70,random_state=0)
+X_train,X_test,y_train,y_test = train_test_split(X,y,train_size=0.70,random_state=0)
 import grid
-grid.grid_tuning(x_train, y_train)
+grid.grid_tuning(X_train, y_train)
+import random_tuning
+random_tuning.random_tuning(X_train, y_train)
+import bayes_tuning
+bayes_tuning.bayes_tuning(X_train, y_train)
