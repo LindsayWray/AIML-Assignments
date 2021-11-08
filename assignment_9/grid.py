@@ -1,12 +1,4 @@
-import pandas as pd
-import numpy as np
-df = pd.read_csv("heart.csv")
-
-y = df["HeartDisease"]
-X = df.drop("HeartDisease",axis=1)
-
 from sklearn.model_selection import train_test_split, GridSearchCV
-
 from sklearn.svm import SVC
 def grid_tuning(X_train, y_train):
 	model = SVC()
